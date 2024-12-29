@@ -55,6 +55,12 @@
                               </a>
                           </li>
                           <li class="nav-item">
+                              <a href="{{ route('dosen.berikanTugas.index') }}" class="nav-link">
+                                  <i class="fas fa-calendar-alt nav-icon"></i>
+                                  <p>Berikan Tugas</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
                               <a href="{{ route('dosen.pendaftaranSeminar.index') }}" class="nav-link">
                               <i class="fas fa-clipboard-list nav-icon"></i>
                                   <p>Pendaftaran Seminar</p>

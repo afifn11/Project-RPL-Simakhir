@@ -60,6 +60,9 @@ Route::middleware(['auth', 'role:dosen'])->group(function () {
     Route::get('/dosen/pendaftaran-bimbingan', [PendaftaranBimbinganController::class, 'index'])->name('dosen.pendaftaranBimbingan.index');
     Route::post('/dosen//pendaftaran-bimbingan/{schedule}/approve', [PendaftaranBimbinganController::class, 'approve'])->name('dosen.pendaftaranBimbingan.approve');
     Route::post('/dosen/pendaftaran-bimbingan/{schedule}/reject', [PendaftaranBimbinganController::class, 'reject'])->name('dosen.pendaftaranBimbingan.reject');
+    // Untuk Dosen (Dosen dapat memberikan tugas)
+    Route::get('dosen/berikanTugas', [KelolaTugasController::class, 'dosenIndex'])->name('dosen.berikanTugas.index');
+    Route::post('dosen/kelolaTugas', [KelolaTugasController::class, 'store'])->name('dosen.kelolaTugas.store');
 });
 
 // Route untuk mahasiswa
@@ -71,10 +74,10 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     Route::post('/{mahasiswaId}/jadwalBimbingan', [JadwalBimbinganMhsController::class, 'store'])->name('mahasiswa.jadwalBimbingan.store');
     Route::put('/{mahasiswaId}/jadwalBimbingan/{scheduleId}', [JadwalBimbinganMhsController::class, 'update'])->name('mahasiswa.jadwalBimbingan.update');
     Route::delete('/{mahasiswaId}/jadwalBimbingan/{scheduleId}', [JadwalBimbinganMhsController::class, 'destroy'])->name('mahasiswa.jadwalBimbingan.destroy');
-    Route::get('/mahasiswa/kelolaTugas', [KelolaTugasController::class, 'index'])->name('mahasiswa.kelolaTugas.index');
-    Route::post('kelolaTugas', [KelolaTugasController::class, 'store'])->name('mahasiswa.kelolaTugas.store');
-    Route::put('kelolaTugas/{task}', [KelolaTugasController::class, 'update'])->name('mahasiswa.kelolaTugas.update');
-    Route::delete('kelolaTugas/{task}', [KelolaTugasController::class, 'destroy'])->name('mahasiswa.kelolaTugas.destroy');
+    // Untuk Mahasiswa (Mahasiswa dapat mengelola tugas)
+    Route::get('mahasiswa/kelolaTugas', [KelolaTugasController::class, 'mahasiswaIndex'])->name('mahasiswa.kelolaTugas.index');
+    Route::put('mahasiswa/kelolaTugas/{task}', [KelolaTugasController::class, 'update'])->name('mahasiswa.kelolaTugas.update');
+    Route::delete('mahasiswa/kelolaTugas/{task}', [KelolaTugasController::class, 'destroy'])->name('mahasiswa.kelolaTugas.destroy');
     Route::get('/mahasiswa/unggah-dokumen', [UnggahDokumenController::class, 'index'])->name('mahasiswa.unggahDokumen.index');
     Route::post('/mahasiswa/unggah-dokumen', [UnggahDokumenController::class, 'store'])->name('mahasiswa.unggahDokumen.store');
     Route::delete('/mahasiswa/unggah-dokumen/{document}', [UnggahDokumenController::class, 'destroy'])->name('mahasiswa.unggahDokumen.destroy');

@@ -16,7 +16,6 @@
         <div class="card">
             <div class="card-header" style="background-color: #E1FFBB">
                 <h3 class="card-title">Daftar Tugas</h3>
-                <button class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#addTaskModal">Tambah Tugas</button>
             </div>
 
             <div class="card-body">
@@ -63,66 +62,36 @@
 
 @include('mahasiswa.footer')
 
-<!-- Modal Tambah -->
-<div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <form action="{{ route('mahasiswa.kelolaTugas.store') }}" method="POST">
-            @csrf
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Tambah Tugas</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>Judul</label>
-                        <input type="text" name="title" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Deskripsi</label>
-                        <textarea name="description" class="form-control"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Deadline</label>
-                        <input type="date" name="deadline" class="form-control" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
 <!-- Modal Edit -->
-<div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="editTaskModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <form id="editTaskForm" method="POST">
             @csrf
             @method('PUT')
+            <input type="hidden" name="task_id" id="taskId">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit Tugas</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h5 class="modal-title" id="editTaskModalLabel">Edit Tugas</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Judul</label>
-                        <input type="text" name="title" class="form-control" required id="editTitle">
+                        <label>Judul Tugas</label>
+                        <input type="text" name="title" class="form-control" id="taskTitle" required>
                     </div>
                     <div class="form-group">
-                        <label>Deskripsi</label>
-                        <textarea name="description" class="form-control" id="editDescription"></textarea>
+                        <label>Deskripsi Tugas</label>
+                        <textarea name="description" class="form-control" id="taskDescription"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Deadline</label>
-                        <input type="date" name="deadline" class="form-control" required id="editDeadline">
+                        <input type="date" name="deadline" class="form-control" id="taskDeadline" required>
                     </div>
                     <div class="form-group">
                         <label>Status</label>
-                        <select name="status" class="form-control" id="editStatus">
+                        <select name="status" class="form-control" id="taskStatus" required>
                             <option value="pending">Pending</option>
                             <option value="completed">Completed</option>
                         </select>
@@ -139,12 +108,16 @@
 
 <script>
     $(document).on('click', '.btn-edit', function () {
-        const task = $(this).data('task');
-        $('#editTaskForm').attr('action', `/mahasiswa/kelolaTugas/${task.id}`);
-        $('#editTitle').val(task.title);
-        $('#editDescription').val(task.description);
-        $('#editDeadline').val(task.deadline);
-        $('#editStatus').val(task.status);
+        var task = $(this).data('task');
+        $('#taskId').val(task.id);
+        $('#taskTitle').val(task.title);
+        $('#taskDescription').val(task.description);
+        $('#taskDeadline').val(task.deadline);
+        $('#taskStatus').val(task.status);
+
+        // Set the action attribute of the form with the task ID
+        $('#editTaskForm').attr('action', '/mahasiswa/kelolaTugas/' + task.id);
+
         $('#editTaskModal').modal('show');
     });
 </script>

@@ -67,7 +67,7 @@
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="#" class="nav-link">
+                              <a href="{{ route('mahasiswa.kelolaTugas.index') }}" class="nav-link">
                                   <i class="fas fa-tasks nav-icon"></i>
                                   <p>Kelola Tugas</p>
                               </a>
