@@ -47,7 +47,12 @@ class KelolaTugasController extends Controller
     // Update tugas (untuk mahasiswa memperbarui status)
     public function update(Request $request, Task $task)
     {
-        $this->authorize('update', $task);
+        // Pengecekan manual: Pastikan yang mengakses adalah pemilik tugas
+        if ($task->user_id !== auth()->id()) {
+            // Jika bukan pemilik, tampilkan pesan error atau redirect
+            return redirect()->route('mahasiswa.kelolaTugas.index')
+                             ->with('error', 'Anda tidak memiliki akses untuk mengubah tugas ini.');
+        }
 
         $request->validate([
             'title' => 'required|string|max:255',
@@ -58,16 +63,23 @@ class KelolaTugasController extends Controller
 
         $task->update($request->all());
 
-        return redirect()->route('mahasiswa.kelolaTugas.index')->with('success', 'Tugas berhasil diperbarui.');
+        return redirect()->route('mahasiswa.kelolaTugas.index')
+                         ->with('success', 'Tugas berhasil diperbarui.');
     }
 
     // Hapus tugas (hanya dapat dihapus oleh pemiliknya)
     public function destroy(Task $task)
     {
-        $this->authorize('delete', $task);
+        // Pengecekan manual: Pastikan yang mengakses adalah pemilik tugas
+        if ($task->user_id !== auth()->id()) {
+            // Jika bukan pemilik, tampilkan pesan error atau redirect
+            return redirect()->route('mahasiswa.kelolaTugas.index')
+                             ->with('error', 'Anda tidak memiliki akses untuk menghapus tugas ini.');
+        }
 
         $task->delete();
 
-        return redirect()->route('mahasiswa.kelolaTugas.index')->with('success', 'Tugas berhasil dihapus.');
+        return redirect()->route('mahasiswa.kelolaTugas.index')
+                         ->with('success', 'Tugas berhasil dihapus.');
     }
 }

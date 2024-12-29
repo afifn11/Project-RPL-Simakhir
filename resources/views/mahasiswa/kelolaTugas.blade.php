@@ -45,10 +45,11 @@
                             <td>{{ ucfirst($task->status) }}</td>
                             <td>
                                 <button class="btn btn-warning btn-sm btn-edit" data-task="{{ $task }}">Edit</button>
-                                <form action="{{ route('mahasiswa.kelolaTugas.destroy', $task) }}" method="POST" style="display:inline-block;">
+                                <!-- Tombol hapus -->
+                                <form action="{{ route('mahasiswa.kelolaTugas.destroy', $task) }}" method="POST" style="display:inline-block;" class="delete-task-form">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                    <button type="button" class="btn btn-danger btn-sm">Hapus</button>
                                 </form>
                             </td>
                         </tr>
@@ -106,7 +107,34 @@
     </div>
 </div>
 
+<!-- Modal Konfirmasi Hapus -->
+<div class="modal fade" id="deleteTaskModal" tabindex="-1" role="dialog" aria-labelledby="deleteTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteTaskModalLabel">Konfirmasi Hapus Tugas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Apakah Anda yakin ingin menghapus tugas ini?
+            </div>
+            <div class="modal-footer">
+                <!-- Tombol Hapus yang akan mengirimkan form -->
+                <form id="deleteTaskForm" method="POST" style="display:inline-block;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
+    // Mengedit Tugas
     $(document).on('click', '.btn-edit', function () {
         var task = $(this).data('task');
         $('#taskId').val(task.id);
@@ -115,9 +143,21 @@
         $('#taskDeadline').val(task.deadline);
         $('#taskStatus').val(task.status);
 
-        // Set the action attribute of the form with the task ID
+        // Set action attribute dari form
         $('#editTaskForm').attr('action', '/mahasiswa/kelolaTugas/' + task.id);
 
         $('#editTaskModal').modal('show');
+    });
+
+    // Konfirmasi Hapus Tugas
+    $(document).on('click', '.btn-danger', function () {
+        var task = $(this).closest('form');  // Ambil form dari tombol hapus
+        var taskId = task.find('input[name="task_id"]').val();  // Ambil task_id dari form
+
+        // Set action form hapus ke route yang benar
+        $('#deleteTaskForm').attr('action', '/mahasiswa/kelolaTugas/' + taskId);
+
+        // Tampilkan modal konfirmasi
+        $('#deleteTaskModal').modal('show');
     });
 </script>
