@@ -45,12 +45,8 @@
                             <td>{{ ucfirst($task->status) }}</td>
                             <td>
                                 <button class="btn btn-warning btn-sm btn-edit" data-task="{{ $task }}">Edit</button>
-                                <!-- Tombol hapus -->
-                                <form action="{{ route('mahasiswa.kelolaTugas.destroy', $task) }}" method="POST" style="display:inline-block;" class="delete-task-form">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="button" class="btn btn-danger btn-sm">Hapus</button>
-                                </form>
+                                <!-- Tombol Hapus yang Memicu Modal Konfirmasi Hapus -->
+                                <button class="btn btn-danger btn-sm btn-delete" data-task-id="{{ $task->id }}">Hapus</button>
                             </td>
                         </tr>
                         @endforeach
@@ -121,20 +117,20 @@
                 Apakah Anda yakin ingin menghapus tugas ini?
             </div>
             <div class="modal-footer">
-                <!-- Tombol Hapus yang akan mengirimkan form -->
+                <!-- Form untuk menghapus tugas -->
                 <form id="deleteTaskForm" method="POST" style="display:inline-block;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Hapus</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 </form>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    // Mengedit Tugas
+    // Modal Edit
     $(document).on('click', '.btn-edit', function () {
         var task = $(this).data('task');
         $('#taskId').val(task.id);
@@ -143,18 +139,17 @@
         $('#taskDeadline').val(task.deadline);
         $('#taskStatus').val(task.status);
 
-        // Set action attribute dari form
+        // Set the action attribute of the form with the task ID
         $('#editTaskForm').attr('action', '/mahasiswa/kelolaTugas/' + task.id);
 
         $('#editTaskModal').modal('show');
     });
 
-    // Konfirmasi Hapus Tugas
-    $(document).on('click', '.btn-danger', function () {
-        var task = $(this).closest('form');  // Ambil form dari tombol hapus
-        var taskId = task.find('input[name="task_id"]').val();  // Ambil task_id dari form
+    // Modal Hapus
+    $(document).on('click', '.btn-delete', function () {
+        var taskId = $(this).data('task-id');  // Ambil task_id dari tombol hapus
 
-        // Set action form hapus ke route yang benar
+        // Set action form hapus ke route yang benar dengan taskId
         $('#deleteTaskForm').attr('action', '/mahasiswa/kelolaTugas/' + taskId);
 
         // Tampilkan modal konfirmasi
