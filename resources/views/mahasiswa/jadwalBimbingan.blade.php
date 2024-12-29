@@ -66,7 +66,7 @@
         <form action="{{ route('mahasiswa.jadwalBimbingan.store', $mahasiswaId) }}" method="POST">
             @csrf
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="background-color: #E1FFBB">
                     <h5 class="modal-title">Tambah Jadwal Bimbingan</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -90,7 +90,7 @@
                         <textarea name="note" id="note" class="form-control"></textarea>
                     </div>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer" style="background-color: #074799">
                     <button type="submit" class="btn btn-primary">Simpan</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 </div>
