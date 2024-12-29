@@ -91,8 +91,8 @@
                     </div>
                 </div>
                 <div class="modal-footer" style="background-color: #074799">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
                 </div>
             </div>
         </form>
@@ -107,7 +107,7 @@
             @csrf
             @method('PUT')
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="background-color: #FFE4B5">
                     <h5 class="modal-title">Edit Jadwal Bimbingan</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -131,9 +131,9 @@
                         <textarea name="note" id="note" class="form-control">{{ $schedule->note }}</textarea>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <div class="modal-footer" style="background-color: #FFE4B5">
+                    <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
                 </div>
             </div>
         </form>
