@@ -58,7 +58,7 @@
             @csrf
             <input type="hidden" name="user_id" id="studentId">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="background-color: #E1FFBB">
                     <h5 class="modal-title">Berikan Tugas</h5>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
@@ -85,9 +85,9 @@
                         @enderror
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <div class="modal-footer" style="background-color: #074799">
+                    <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
                 </div>
             </div>
         </form>
