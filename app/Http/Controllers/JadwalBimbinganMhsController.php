@@ -9,7 +9,6 @@ class JadwalBimbinganMhsController extends Controller
 {
     public function index($mahasiswaId)
     {
-        // Ambil jadwal bimbingan berdasarkan ID mahasiswa
         $schedules = Schedule::where('user_id', $mahasiswaId)
             ->where('type', 'bimbingan')
             ->get();
@@ -19,24 +18,18 @@ class JadwalBimbinganMhsController extends Controller
 
     public function store(Request $request, $mahasiswaId)
     {
-        // Validasi input
-        $request->validate([
+        $validated = $request->validate([
             'date' => 'required|date',
             'time' => 'required',
             'location' => 'required|string|max:255',
             'note' => 'nullable|string|max:500',
         ]);
 
-        // Simpan jadwal baru
-        Schedule::create([
+        Schedule::create(array_merge($validated, [
             'user_id' => $mahasiswaId,
-            'date' => $request->date,
-            'time' => $request->time,
-            'location' => $request->location,
             'type' => 'bimbingan',
-            'note' => $request->note,
             'status' => 'pending',
-        ]);
+        ]));
 
         return redirect()->route('mahasiswa.jadwalBimbingan.index', $mahasiswaId)
             ->with('success', 'Jadwal bimbingan berhasil ditambahkan.');
@@ -44,22 +37,15 @@ class JadwalBimbinganMhsController extends Controller
 
     public function update(Request $request, $mahasiswaId, $scheduleId)
     {
-        // Validasi input
-        $request->validate([
+        $validated = $request->validate([
             'date' => 'required|date',
             'time' => 'required',
             'location' => 'required|string|max:255',
             'note' => 'nullable|string|max:500',
         ]);
 
-        // Update jadwal
         $schedule = Schedule::where('user_id', $mahasiswaId)->findOrFail($scheduleId);
-        $schedule->update([
-            'date' => $request->date,
-            'time' => $request->time,
-            'location' => $request->location,
-            'note' => $request->note,
-        ]);
+        $schedule->update($validated);
 
         return redirect()->route('mahasiswa.jadwalBimbingan.index', $mahasiswaId)
             ->with('success', 'Jadwal bimbingan berhasil diperbarui.');
@@ -67,7 +53,6 @@ class JadwalBimbinganMhsController extends Controller
 
     public function destroy($mahasiswaId, $scheduleId)
     {
-        // Hapus jadwal
         $schedule = Schedule::where('user_id', $mahasiswaId)->findOrFail($scheduleId);
         $schedule->delete();
 

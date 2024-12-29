@@ -61,7 +61,7 @@
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="" class="nav-link">
+                              <a href="{{ route('mahasiswa.jadwalBimbingan.index', ['mahasiswaId' => auth()->user()->id]) }}" class="nav-link">
                                   <i class="fas fa-calendar-alt nav-icon"></i>
                                   <p>Jadwal Bimbingan</p>
                               </a>
