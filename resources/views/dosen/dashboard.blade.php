@@ -11,6 +11,19 @@
             </div>
         </div>
     </section>
+
+    <!-- Kata Sambutan -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6" style="background-color: #074799; padding: 15px; border-radius: 5px; color: #fff;">
+                    <h4>Hai, {{ Auth::user()->name }}</h4>
+                    <p>Selamat datang di SIMAKHIR!</p>
+                    <p>Di sini Anda dapat mengelola jadwal mahasiswa, menyetujui bimbingan dan seminar, dan memberikan nilai dengan mudah.</p>
+                </div>
+            </div>
+        </div>
+    </section>
     
     <section class="content">
         <div class="card">
