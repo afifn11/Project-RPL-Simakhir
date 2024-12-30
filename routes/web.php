@@ -15,6 +15,7 @@ use App\Http\Controllers\PenilaianSeminarController;
 use App\Http\Controllers\UnggahDokumenController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\BackupDataController;
+use App\Http\Controllers\DaftarSeminarController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -69,6 +70,10 @@ Route::middleware(['auth', 'role:dosen'])->group(function () {
 Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     // Mahasiswa
     Route::get('/mahasiswa/dashboard', [MahasiswaController::class, 'index'])->name('mahasiswa.dashboard');
+    Route::get('/mahasiswa/daftarSeminar', [DaftarSeminarController::class, 'index'])->name('mahasiswa.daftarSeminar.index');
+    Route::post('/mahasiswa/daftarSeminar', [DaftarSeminarController::class, 'store'])->name('mahasiswa.daftarSeminar.store');
+    Route::put('/mahasiswa/daftarSeminar/{seminar}', [DaftarSeminarController::class, 'update'])->name('mahasiswa.daftarSeminar.update');
+    Route::delete('/mahasiswa/daftarSeminar/{seminar}', [DaftarSeminarController::class, 'destroy'])->name('mahasiswa.daftarSeminar.destroy');
     Route::get('/mahasiswa/hasilPenilaian', [HasilPenilaianController::class, 'index'])->name('mahasiswa.hasilPenilaian');
     Route::get('/{mahasiswaId}/jadwalBimbingan', [JadwalBimbinganMhsController::class, 'index'])->name('mahasiswa.jadwalBimbingan.index');
     Route::post('/{mahasiswaId}/jadwalBimbingan', [JadwalBimbinganMhsController::class, 'store'])->name('mahasiswa.jadwalBimbingan.store');
