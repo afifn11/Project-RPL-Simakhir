@@ -40,7 +40,17 @@
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $bimbingan->user->name }}</td>
                             <td>{{ $bimbingan->document->title ?? 'Judul tidak tersedia' }}</td>
-                            <td>{{ ucfirst($bimbingan->status) }}</td>
+                            <td>
+                                @if($bimbingan->status === 'pending')
+                                    <span class="badge badge-warning">Menunggu</span>
+                                @elseif($bimbingan->status === 'approved')
+                                    <span class="badge badge-success">Disetujui</span>
+                                @elseif($bimbingan->status === 'rejected')
+                                    <span class="badge badge-danger">Ditolak</span>
+                                @else
+                                    <span class="badge badge-secondary">Tidak Diketahui</span>
+                                @endif
+                            </td>
                             <td>
                                 <form action="{{ route('dosen.pendaftaranBimbingan.approve', $bimbingan->id) }}" method="POST" class="d-inline">
                                     @csrf
