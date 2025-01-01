@@ -118,8 +118,8 @@
                                         </div>
 
                                         <div class="modal-footer" style="background-color: #074799">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Tutup</button>
+                                            <button type="submit" class="btn btn-primary btn-sm">Simpan Perubahan</button>
                                         </div>
                                     </form>
                                 </div>
@@ -178,8 +178,8 @@
                 </div>
 
                 <div class="modal-footer" style="background-color: #074799">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Tambah Jadwal</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Tambah Jadwal</button>
                 </div>
             </form>
         </div>
@@ -200,11 +200,11 @@
                 Apakah Anda yakin ingin menghapus jadwal ini?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
                 <form id="deleteForm" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Hapus</button>
+                    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
                 </form>
             </div>
         </div>
