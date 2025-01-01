@@ -48,8 +48,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 // Route untuk dosen
 Route::middleware(['auth', 'role:dosen'])->group(function () {
     Route::get('/dosen/dashboard', [DosenController::class, 'index'])->name('dosen.dashboard');
-    Route::get('/dosen/jadwal-bimbingan', [JadwalBimbinganController::class, 'index'])->name('schedules.index');
-    Route::post('jadwal-bimbingan/store', [JadwalBimbinganController::class, 'store'])->name('dosen.jadwalBimbingan.store');
+    Route::get('jadwal-bimbingan/{id}', [JadwalBimbinganController::class, 'show'])->name('dosen.jadwalBimbingan.show');
+    Route::get('jadwal-bimbingan', [JadwalBimbinganController::class, 'index'])->name('dosen.jadwalBimbingan.index');
     // dosen/Pendaftaran Seminar
     Route::get('/dosen/pendaftaran-seminar', [PendaftaranSeminarController::class, 'index'])->name('dosen.pendaftaranSeminar.index');
     Route::post('/dosen/pendaftaran-seminar/{schedule}/approve', [PendaftaranSeminarController::class, 'approve'])->name('dosen.pendaftaranSeminar.approve');

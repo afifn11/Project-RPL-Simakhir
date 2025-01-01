@@ -34,7 +34,7 @@
             <div class="container mt-3">
                 <div class="row">
                     <!-- Jumlah Daftar Seminar -->
-                    <div class="col-lg-4 col-6">
+                    <div class="col-lg-3 col-6">
                         <div class="small-box bg-warning">
                             <div class="inner">
                                 <h3>{{ $jumlahSeminar }}</h3>
@@ -43,12 +43,12 @@
                             <div class="icon">
                                 <i class="ion ion-person"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Lihat Daftar Seminar <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{ route('mahasiswa.daftarSeminar.index') }}" class="small-box-footer">Lihat Daftar Seminar <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
 
                     <!-- Jumlah Jadwal Bimbingan -->
-                    <div class="col-lg-4 col-6">
+                    <div class="col-lg-3 col-6">
                         <div class="small-box bg-success">
                             <div class="inner">
                                 <h3>{{ $jumlahJadwalBimbingan }}</h3>
@@ -57,12 +57,12 @@
                             <div class="icon">
                                 <i class="ion ion-calendar"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Lihat Jadwal Bimbingan <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{ route('mahasiswa.jadwalBimbingan.index', ['mahasiswaId' => auth()->user()->id]) }}" class="small-box-footer">Lihat Jadwal Bimbingan <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
 
                     <!-- Jumlah Hasil Penilaian -->
-                    <div class="col-lg-4 col-6">
+                    <div class="col-lg-3 col-6">
                         <div class="small-box bg-info">
                             <div class="inner">
                                 <h3>{{ $jumlahHasilPenilaian }}</h3>
@@ -71,12 +71,12 @@
                             <div class="icon">
                                 <i class="ion ion-archive"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Lihat Hasil Penilaian <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{ route('mahasiswa.hasilPenilaian') }}" class="small-box-footer">Lihat Hasil Penilaian <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
 
                     <!-- Jumlah Tugas -->
-                    <div class="col-lg-4 col-6">
+                    <div class="col-lg-3 col-6">
                         <div class="small-box bg-primary">
                             <div class="inner">
                                 <h3>{{ $jumlahTugas }}</h3>
@@ -85,12 +85,12 @@
                             <div class="icon">
                                 <i class="ion ion-archive"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Lihat Tugas <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{ route('mahasiswa.kelolaTugas.index') }}" class="small-box-footer">Lihat Tugas <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
 
                     <!-- Jumlah Unggah Dokumen -->
-                    <div class="col-lg-4 col-6">
+                    <div class="col-lg-3 col-6">
                         <div class="small-box bg-secondary">
                             <div class="inner">
                                 <h3>{{ $jumlahDokumen }}</h3>
@@ -99,7 +99,7 @@
                             <div class="icon">
                                 <i class="ion ion-archive"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Lihat Unggah Dokumen <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{ route('mahasiswa.unggahDokumen.index') }}" class="small-box-footer">Lihat Unggah Dokumen <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>

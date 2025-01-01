@@ -10,7 +10,7 @@ class Schedule extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function document()
@@ -32,6 +32,7 @@ class Schedule extends Model
     {
         return $this->result ? $this->result->comments : null;
     }
+    
 
 }
 
