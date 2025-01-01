@@ -39,8 +39,10 @@
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $seminar->title }}</td>
-                            <td>{{ $seminar->date }}</td>
-                            <td>{{ $seminar->time }}</td>
+                            <!-- Format tanggal -->
+                            <td>{{ \Carbon\Carbon::parse($seminar->date)->translatedFormat('d F Y') }}</td>
+                            <!-- Format waktu -->
+                            <td>{{ \Carbon\Carbon::parse($seminar->time)->format('H:i') }}</td>
                             <td>
                                 <!-- Badge status berdasarkan status seminar -->
                                 @if($seminar->status == 'pending')

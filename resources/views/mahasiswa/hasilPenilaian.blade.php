@@ -39,7 +39,14 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $result->schedule->title ?? 'Tidak ada judul' }}</td>
-                                    <td>{{ $result->schedule->date ?? 'Belum dijadwalkan' }}</td>
+                                    <!-- Format tanggal menggunakan Carbon -->
+                                    <td>
+                                        @if($result->schedule && $result->schedule->date)
+                                            {{ \Carbon\Carbon::parse($result->schedule->date)->translatedFormat('d F Y') }}
+                                        @else
+                                            Belum dijadwalkan
+                                        @endif
+                                    </td>
                                     <td>{{ $result->score ?? 'Tidak ada nilai' }}</td>
                                     <td>{{ $result->comments ?? 'Tidak ada komentar' }}</td>
                                 </tr>

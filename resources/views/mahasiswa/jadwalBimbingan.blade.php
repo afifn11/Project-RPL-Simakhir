@@ -42,9 +42,22 @@
                             @foreach($schedules as $key => $schedule)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
-                                <td>{{ $schedule->date }}</td>
-                                <td>{{ $schedule->time }}</td>
-                                <td>{{ $schedule->location }}</td>
+                                <!-- Format tanggal menggunakan Carbon -->
+                                <td>
+                                    @if($schedule->date)
+                                        {{ \Carbon\Carbon::parse($schedule->date)->translatedFormat('d F Y') }}
+                                    @else
+                                        Belum dijadwalkan
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($schedule->time)
+                                        {{ \Carbon\Carbon::parse($schedule->time)->format('H:i') }}
+                                    @else
+                                        Belum ditentukan
+                                    @endif
+                                </td>
+                                <td>{{ $schedule->location ?? 'Tidak ada lokasi' }}</td>
                                 <td>{{ $schedule->note ?? 'Tidak ada catatan' }}</td>
                                 <td>
                                     <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal{{ $schedule->id }}">Edit</button>

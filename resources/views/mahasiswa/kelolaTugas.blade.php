@@ -41,11 +41,17 @@
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $task->title }}</td>
                             <td>{{ $task->description }}</td>
-                            <td>{{ $task->deadline }}</td>
+                            <!-- Format deadline menggunakan Carbon -->
+                            <td>
+                                @if($task->deadline)
+                                    {{ \Carbon\Carbon::parse($task->deadline)->translatedFormat('d F Y') }}
+                                @else
+                                    Tidak ada deadline
+                                @endif
+                            </td>
                             <td>{{ ucfirst($task->status) }}</td>
                             <td>
                                 <button class="btn btn-warning btn-sm btn-edit" data-task="{{ $task }}">Edit</button>
-                                <!-- Tombol Hapus yang Memicu Modal Konfirmasi Hapus -->
                                 <button class="btn btn-danger btn-sm btn-delete" data-task-id="{{ $task->id }}">Hapus</button>
                             </td>
                         </tr>
@@ -117,7 +123,6 @@
                 Apakah Anda yakin ingin menghapus tugas ini?
             </div>
             <div class="modal-footer">
-                <!-- Form untuk menghapus tugas -->
                 <form id="deleteTaskForm" method="POST" style="display:inline-block;">
                     @csrf
                     @method('DELETE')

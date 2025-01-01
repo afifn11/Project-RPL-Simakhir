@@ -43,7 +43,10 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $document->title }}</td>
-                                    <td>{{ $document->created_at->format('d-m-Y') }}</td>
+                                    <!-- Format tanggal menggunakan Carbon -->
+                                    <td>
+                                        {{ \Carbon\Carbon::parse($document->created_at)->translatedFormat('d F Y') }}
+                                    </td>
                                     <td>
                                         <a href="{{ route('documents.download', $document->id) }}" class="btn btn-success btn-sm">Unduh</a>
                                         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal-{{ $document->id }}">Edit</button>
@@ -108,38 +111,6 @@
                                         </form>
                                     </div>
                                 </div>
-
-                                <!-- Modal Unggah Dokumen -->
-                                <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <form action="{{ route('mahasiswa.unggahDokumen.store') }}" method="POST" enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="modal-content">
-                                                <div class="modal-header" style="background-color: #E1FFBB">
-                                                    <h5 class="modal-title" id="uploadModalLabel">Unggah Dokumen</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-                                                        <label for="title">Nama Dokumen</label>
-                                                        <input type="text" name="title" id="title" class="form-control" placeholder="Masukkan nama dokumen" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="file">Pilih File</label>
-                                                        <input type="file" name="file" id="file" class="form-control" required>
-                                                        <small class="form-text text-muted">Format file: PDF, DOC, DOCX (max: 2MB)</small>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer" style="background-color: #074799">
-                                                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-primary btn-sm">Unggah</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
                             @endforeach
                         </tbody>
                     </table>
@@ -150,3 +121,35 @@
 </div>
 
 @include('mahasiswa.footer')
+
+<!-- Modal Unggah Dokumen -->
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form action="{{ route('mahasiswa.unggahDokumen.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #E1FFBB">
+                    <h5 class="modal-title" id="uploadModalLabel">Unggah Dokumen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="title">Nama Dokumen</label>
+                        <input type="text" name="title" id="title" class="form-control" placeholder="Masukkan nama dokumen" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="file">Pilih File</label>
+                        <input type="file" name="file" id="file" class="form-control" required>
+                        <small class="form-text text-muted">Format file: PDF, DOC, DOCX (max: 2MB)</small>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color: #074799">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Unggah</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -44,8 +44,8 @@
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $schedule->user->name }}</td>
-                            <td>{{ $schedule->date }}</td>
-                            <td>{{ $schedule->time }}</td>
+                            <td>{{ \Carbon\Carbon::parse($schedule->date)->format('d M Y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($schedule->time)->format('H:i') }}</td>
                             <td>{{ $schedule->location }}</td>
                             <td>{{ ucfirst($schedule->type) }}</td>
                             <td>
