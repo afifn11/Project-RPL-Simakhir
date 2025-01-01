@@ -51,7 +51,7 @@
                           <li class="nav-item">
                               <a href="{{ route('admin.jadwalkanSeminar') }}" class="nav-link">
                                   <i class="fas fa-calendar-alt nav-icon"></i>
-                                  <p>Jadwalkan Ujian</p>
+                                  <p>Kelola Jadwal</p>
                               </a>
                           </li>
                           <li class="nav-item">
