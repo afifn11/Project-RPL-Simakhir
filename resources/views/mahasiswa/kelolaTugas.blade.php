@@ -36,26 +36,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($tasks as $key => $task)
-                        <tr>
-                            <td>{{ $key + 1 }}</td>
-                            <td>{{ $task->title }}</td>
-                            <td>{{ $task->description }}</td>
-                            <!-- Format deadline menggunakan Carbon -->
-                            <td>
-                                @if($task->deadline)
-                                    {{ \Carbon\Carbon::parse($task->deadline)->translatedFormat('d F Y') }}
-                                @else
-                                    Tidak ada deadline
-                                @endif
-                            </td>
-                            <td>{{ ucfirst($task->status) }}</td>
-                            <td>
-                                <button class="btn btn-warning btn-sm btn-edit" data-task="{{ $task }}">Edit</button>
-                                <button class="btn btn-danger btn-sm btn-delete" data-task-id="{{ $task->id }}">Hapus</button>
-                            </td>
-                        </tr>
-                        @endforeach
+                        @forelse($tasks as $key => $task)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $task->title }}</td>
+                                <td>{{ $task->description }}</td>
+                                <td>
+                                    @if($task->deadline)
+                                        {{ \Carbon\Carbon::parse($task->deadline)->translatedFormat('d F Y') }}
+                                    @else
+                                        Tidak ada deadline
+                                    @endif
+                                </td>
+                                <td>{{ ucfirst($task->status) }}</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm btn-edit" data-task="{{ $task }}">Edit</button>
+                                    <button class="btn btn-danger btn-sm btn-delete" data-task-id="{{ $task->id }}">Hapus</button>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="6" class="text-center">Belum ada tugas yang ditambahkan.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
@@ -73,7 +76,7 @@
             @method('PUT')
             <input type="hidden" name="task_id" id="taskId">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="background-color: #FFE4B5">
                     <h5 class="modal-title" id="editTaskModalLabel">Edit Tugas</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -100,9 +103,9 @@
                         </select>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <div class="modal-footer" style="background-color: #FFE4B5">
+                    <button type="submit" class="btn btn-primary btn-sm">Simpan Perubahan</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
                 </div>
             </div>
         </form>
@@ -126,8 +129,8 @@
                 <form id="deleteTaskForm" method="POST" style="display:inline-block;">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Hapus</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
                 </form>
             </div>
         </div>

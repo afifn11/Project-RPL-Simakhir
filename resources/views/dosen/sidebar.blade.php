@@ -34,67 +34,64 @@
           </div>
 
           <!-- Sidebar Menu -->
-          <nav class="mt-2">
-              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                  data-accordion="false">
-                  <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-                  <li class="nav-item">
-                      <a href="#" class="nav-link">
-                          <i class="nav-icon fas fa-tachometer-alt"></i>
-                          <p>
-                              Dashboard
-                              <i class="right fas fa-angle-left"></i>
-                          </p>
-                      </a>
-                      <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                              <a href="{{ route('dosen.jadwalBimbingan.index') }}" class="nav-link">
-                                  <i class="fas fa-calendar-alt nav-icon"></i>
-                                  <p>Jadwal Bimbingan</p>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="{{ route('dosen.berikanTugas.index') }}" class="nav-link">
-                                  <i class="fas fa-calendar-alt nav-icon"></i>
-                                  <p>Berikan Tugas</p>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="{{ route('dosen.pendaftaranSeminar.index') }}" class="nav-link">
-                              <i class="fas fa-clipboard-list nav-icon"></i>
-                                  <p>Pendaftaran Seminar</p>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="{{ route('dosen.pendaftaranBimbingan.index') }}" class="nav-link">
-                              <i class="fas fa-clipboard-list nav-icon"></i>
-                                  <p>Pendaftaran Bimbingan</p>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="{{ route('dosen.penilaianSeminar') }}" class="nav-link">
-                              <i class="fas fa-check-circle nav-icon"></i>
-                                  <p>Penilaian Seminar</p>
-                              </a>
-                          </li>
-                          
-                      </ul>
-                      <li class="nav-item">
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('dosen.jadwalBimbingan.index') }}" class="nav-link">
+                                    <i class="fas fa-calendar-alt nav-icon"></i>
+                                    <p>Jadwal Bimbingan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dosen.berikanTugas.index') }}" class="nav-link">
+                                    <i class="fas fa-calendar-alt nav-icon"></i>
+                                    <p>Berikan Tugas</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dosen.pendaftaranSeminar.index') }}" class="nav-link">
+                                    <i class="fas fa-clipboard-list nav-icon"></i>
+                                    <p>Pendaftaran Seminar</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dosen.pendaftaranBimbingan.index') }}" class="nav-link">
+                                    <i class="fas fa-clipboard-list nav-icon"></i>
+                                    <p>Pendaftaran Bimbingan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dosen.penilaianSeminar') }}" class="nav-link">
+                                    <i class="fas fa-check-circle nav-icon"></i>
+                                    <p>Penilaian Seminar</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
-                        <a href="{{ route('logout') }}" class="nav-link"
-                            onclick="event.preventDefault();
+                        <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                             <i class="fas fa-sign-out-alt nav-icon"></i>
                             <p>Log Out</p>
                         </a>
                     </li>
-                  </li>
-              </ul>
-          </nav>
-          <!-- /.sidebar-menu -->
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+
       </div>
       <!-- /.sidebar -->
   </aside>
