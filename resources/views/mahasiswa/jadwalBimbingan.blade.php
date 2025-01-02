@@ -22,11 +22,9 @@
             </div>
 
             <div class="card-body">
-                @if($schedules->isEmpty())
-                    <div class="alert alert-warning">
-                        Tidak ada jadwal bimbingan saat ini.
-                    </div>
-                @else
+                @if (session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
