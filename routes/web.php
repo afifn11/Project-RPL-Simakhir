@@ -16,6 +16,7 @@ use App\Http\Controllers\UnggahDokumenController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\BackupDataController;
 use App\Http\Controllers\DaftarSeminarController;
+use App\Http\Controllers\DaftarBimbinganController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -70,6 +71,7 @@ Route::middleware(['auth', 'role:dosen'])->group(function () {
 Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     // Mahasiswa
     Route::get('/mahasiswa/dashboard', [MahasiswaController::class, 'index'])->name('mahasiswa.dashboard');
+    Route::get('/mahasiswa/daftar-bimbingan', [DaftarBimbinganController::class, 'index'])->name('mahasiswa.daftarBimbingan');
     Route::get('/mahasiswa/daftarSeminar', [DaftarSeminarController::class, 'index'])->name('mahasiswa.daftarSeminar.index');
     Route::post('/mahasiswa/daftarSeminar', [DaftarSeminarController::class, 'store'])->name('mahasiswa.daftarSeminar.store');
     Route::put('/mahasiswa/daftarSeminar/{seminar}', [DaftarSeminarController::class, 'update'])->name('mahasiswa.daftarSeminar.update');
