@@ -5,7 +5,7 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
+                <div class="col-lg-6 col-md-8 col-sm-12">
                     <h1>Daftar Seminar Anda</h1>
                 </div>
             </div>
@@ -24,41 +24,43 @@
                         {{ session('success') }}
                     </div>
                 @endif
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Judul</th>
-                            <th>Tanggal</th>
-                            <th>Waktu</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($seminars as $key => $seminar)
-                        <tr>
-                            <td>{{ $key + 1 }}</td>
-                            <td>{{ $seminar->title }}</td>
-                            <!-- Format tanggal -->
-                            <td>{{ \Carbon\Carbon::parse($seminar->date)->translatedFormat('d F Y') }}</td>
-                            <!-- Format waktu -->
-                            <td>{{ \Carbon\Carbon::parse($seminar->time)->format('H:i') }}</td>
-                            <td>
-                                <!-- Badge status berdasarkan status seminar -->
-                                @if($seminar->status == 'pending')
-                                    <span class="badge badge-warning">Menunggu</span>
-                                @elseif($seminar->status == 'approved')
-                                    <span class="badge badge-success">Disetujui</span>
-                                @elseif($seminar->status == 'rejected')
-                                    <span class="badge badge-danger">Ditolak</span>
-                                @else
-                                    <span class="badge badge-secondary">Unknown</span>
-                                @endif
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Judul</th>
+                                <th>Tanggal</th>
+                                <th>Waktu</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($seminars as $key => $seminar)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $seminar->title }}</td>
+                                <!-- Format tanggal -->
+                                <td>{{ \Carbon\Carbon::parse($seminar->date)->translatedFormat('d F Y') }}</td>
+                                <!-- Format waktu -->
+                                <td>{{ \Carbon\Carbon::parse($seminar->time)->format('H:i') }}</td>
+                                <td>
+                                    <!-- Badge status berdasarkan status seminar -->
+                                    @if($seminar->status == 'pending')
+                                        <span class="badge badge-warning">Menunggu</span>
+                                    @elseif($seminar->status == 'approved')
+                                        <span class="badge badge-success">Disetujui</span>
+                                    @elseif($seminar->status == 'rejected')
+                                        <span class="badge badge-danger">Ditolak</span>
+                                    @else
+                                        <span class="badge badge-secondary">Unknown</span>
+                                    @endif
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section>

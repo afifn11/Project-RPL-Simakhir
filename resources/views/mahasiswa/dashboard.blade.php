@@ -5,7 +5,7 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
+                <div class="col-lg-6 col-md-8 col-sm-12">
                     <h1>Dashboard Mahasiswa</h1>
                 </div>
             </div>
@@ -16,7 +16,7 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6" style="background-color: #074799; padding: 15px; border-radius: 5px; color:#fff;">
+                <div class="col-lg-6 col-md-8 col-sm-12" style="background-color: #074799; padding: 15px; border-radius: 5px; color:#fff;">
                     <h4>Hai, {{ Auth::user()->name }}</h4>
                     <p>Selamat datang di SIMAKHIR!</p>
                     <p>Di sini Anda dapat mengatur jadwal, tugas, dan dokumen Anda dengan mudah.</p>
@@ -34,7 +34,7 @@
             <div class="container mt-3">
                 <div class="row">
                     <!-- Jumlah Daftar Seminar -->
-                    <div class="col-lg-3 col-6">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
                         <div class="small-box bg-warning">
                             <div class="inner">
                                 <h3>{{ $jumlahSeminar }}</h3>
@@ -48,7 +48,7 @@
                     </div>
 
                     <!-- Jumlah Jadwal Bimbingan -->
-                    <div class="col-lg-3 col-6">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
                         <div class="small-box bg-success">
                             <div class="inner">
                                 <h3>{{ $jumlahJadwalBimbingan }}</h3>
@@ -62,7 +62,7 @@
                     </div>
 
                     <!-- Jumlah Hasil Penilaian -->
-                    <div class="col-lg-3 col-6">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
                         <div class="small-box bg-info">
                             <div class="inner">
                                 <h3>{{ $jumlahHasilPenilaian }}</h3>
@@ -76,7 +76,7 @@
                     </div>
 
                     <!-- Jumlah Tugas -->
-                    <div class="col-lg-3 col-6">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
                         <div class="small-box bg-primary">
                             <div class="inner">
                                 <h3>{{ $jumlahTugas }}</h3>
@@ -90,7 +90,7 @@
                     </div>
 
                     <!-- Jumlah Unggah Dokumen -->
-                    <div class="col-lg-3 col-6">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
                         <div class="small-box bg-secondary">
                             <div class="inner">
                                 <h3>{{ $jumlahDokumen }}</h3>

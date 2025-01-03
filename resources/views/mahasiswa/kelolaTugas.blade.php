@@ -24,43 +24,45 @@
                         {{ session('success') }}
                     </div>
                 @endif
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Judul</th>
-                            <th>Deskripsi</th>
-                            <th>Deadline</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($tasks as $key => $task)
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
                             <tr>
-                                <td>{{ $key + 1 }}</td>
-                                <td>{{ $task->title }}</td>
-                                <td>{{ $task->description }}</td>
-                                <td>
-                                    @if($task->deadline)
-                                        {{ \Carbon\Carbon::parse($task->deadline)->translatedFormat('d F Y') }}
-                                    @else
-                                        Tidak ada deadline
-                                    @endif
-                                </td>
-                                <td>{{ ucfirst($task->status) }}</td>
-                                <td>
-                                    <button class="btn btn-warning btn-sm btn-edit" data-task="{{ $task }}">Edit</button>
-                                    <button class="btn btn-danger btn-sm btn-delete" data-task-id="{{ $task->id }}">Hapus</button>
-                                </td>
+                                <th>No</th>
+                                <th>Judul</th>
+                                <th>Deskripsi</th>
+                                <th>Deadline</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
                             </tr>
-                        @empty
-                            <tr>
-                                <td colspan="6" class="text-center">Belum ada tugas yang ditambahkan.</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @forelse($tasks as $key => $task)
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $task->title }}</td>
+                                    <td>{{ $task->description }}</td>
+                                    <td>
+                                        @if($task->deadline)
+                                            {{ \Carbon\Carbon::parse($task->deadline)->translatedFormat('d F Y') }}
+                                        @else
+                                            Tidak ada deadline
+                                        @endif
+                                    </td>
+                                    <td>{{ ucfirst($task->status) }}</td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm btn-edit" data-task="{{ $task }}">Edit</button>
+                                        <button class="btn btn-danger btn-sm btn-delete" data-task-id="{{ $task->id }}">Hapus</button>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="text-center">Belum ada tugas yang ditambahkan.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section>
@@ -138,7 +140,6 @@
 </div>
 
 <script>
-    // Modal Edit
     $(document).on('click', '.btn-edit', function () {
         var task = $(this).data('task');
         $('#taskId').val(task.id);
@@ -146,21 +147,13 @@
         $('#taskDescription').val(task.description);
         $('#taskDeadline').val(task.deadline);
         $('#taskStatus').val(task.status);
-
-        // Set the action attribute of the form with the task ID
         $('#editTaskForm').attr('action', '/mahasiswa/kelolaTugas/' + task.id);
-
         $('#editTaskModal').modal('show');
     });
 
-    // Modal Hapus
     $(document).on('click', '.btn-delete', function () {
-        var taskId = $(this).data('task-id');  // Ambil task_id dari tombol hapus
-
-        // Set action form hapus ke route yang benar dengan taskId
+        var taskId = $(this).data('task-id');
         $('#deleteTaskForm').attr('action', '/mahasiswa/kelolaTugas/' + taskId);
-
-        // Tampilkan modal konfirmasi
         $('#deleteTaskModal').modal('show');
     });
 </script>

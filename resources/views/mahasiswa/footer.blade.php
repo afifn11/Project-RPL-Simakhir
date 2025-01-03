@@ -2,7 +2,7 @@
     <div class="float-right d-none d-sm-block">
         
     </div>
-    <strong>Copyright &copy; Kelompok Banteng RPL - 2024 Mahasiswa STT NF</strong> All rights reserved.
+    <strong>Copyright &copy; SIMAKHIR - 2024</strong> All rights reserved.
 </footer>
 
 <!-- Control Sidebar -->

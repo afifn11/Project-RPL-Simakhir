@@ -5,7 +5,7 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
+                <div class="col-lg-6 col-md-8 col-sm-12">
                     <h1>Jadwal Bimbingan</h1>
                 </div>
             </div>
@@ -25,45 +25,48 @@
                 @if (session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Tanggal</th>
-                            <th>Waktu</th>
-                            <th>Lokasi</th>
-                            <th>Catatan</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($schedules as $key => $schedule)
-                        <tr>
-                            <td>{{ $key + 1 }}</td>
-                            <td>
-                                @if($schedule->date)
-                                    {{ \Carbon\Carbon::parse($schedule->date)->translatedFormat('d F Y') }}
-                                @else
-                                    Belum dijadwalkan
-                                @endif
-                            </td>
-                            <td>
-                                @if($schedule->time)
-                                    {{ \Carbon\Carbon::parse($schedule->time)->format('H:i') }}
-                                @else
-                                    Belum ditentukan
-                                @endif
-                            </td>
-                            <td>{{ $schedule->location ?? 'Tidak ada lokasi' }}</td>
-                            <td>{{ $schedule->note ?? 'Tidak ada catatan' }}</td>
-                            <td>
-                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal{{ $schedule->id }}">Edit</button>
-                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{ $schedule->id }}">Hapus</button>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Tanggal</th>
+                                <th>Waktu</th>
+                                <th>Lokasi</th>
+                                <th>Catatan</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($schedules as $key => $schedule)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>
+                                    @if($schedule->date)
+                                        {{ \Carbon\Carbon::parse($schedule->date)->translatedFormat('d F Y') }}
+                                    @else
+                                        Belum dijadwalkan
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($schedule->time)
+                                        {{ \Carbon\Carbon::parse($schedule->time)->format('H:i') }}
+                                    @else
+                                        Belum ditentukan
+                                    @endif
+                                </td>
+                                <td>{{ $schedule->location ?? 'Tidak ada lokasi' }}</td>
+                                <td>{{ $schedule->note ?? 'Tidak ada catatan' }}</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal{{ $schedule->id }}">Edit</button>
+                                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{ $schedule->id }}">Hapus</button>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section>
@@ -108,7 +111,7 @@
     </div>
 </div>
 
-<!-- Modal Edit -->
+<!-- Modal Edit & Hapus -->
 @foreach($schedules as $schedule)
 <div class="modal fade" id="editModal{{ $schedule->id }}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -148,10 +151,7 @@
         </form>
     </div>
 </div>
-@endforeach
 
-<!-- Modal Hapus -->
-@foreach($schedules as $schedule)
 <div class="modal fade" id="deleteModal{{ $schedule->id }}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <form action="{{ route('mahasiswa.jadwalBimbingan.destroy', [$mahasiswaId, $schedule->id]) }}" method="POST">
