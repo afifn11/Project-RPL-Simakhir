@@ -35,7 +35,7 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <!-- Jumlah Pengguna -->
-                    <div class="col-lg-6 col-6">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="small-box bg-info">
                             <div class="inner">
                                 <h3>{{ $userCount }}</h3>
@@ -50,7 +50,7 @@
                     <!-- ./col -->
 
                     <!-- Jumlah Jadwal -->
-                    <div class="col-lg-6 col-6">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="small-box bg-success">
                             <div class="inner">
                                 <h3>{{ $scheduleCount }}</h3>
