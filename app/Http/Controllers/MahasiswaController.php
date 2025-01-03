@@ -20,6 +20,9 @@ class MahasiswaController extends Controller
         // Jumlah jadwal bimbingan
         $jumlahJadwalBimbingan = Schedule::where('user_id', $userId)->where('type', 'bimbingan')->count();
 
+        // Jumlah jadwal bimbingan
+        $jumlahJadwalSeminar = Schedule::where('user_id', $userId)->where('type', 'seminar')->count();
+
         // Jumlah hasil penilaian
         $jumlahHasilPenilaian = Result::where('user_id', $userId)->count();
 
