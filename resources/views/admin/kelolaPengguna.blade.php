@@ -151,8 +151,8 @@
                     </div>
                 </div>
                 <div class="modal-footer" style="background-color: #074799">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
                 </div>
             </form>
         </div>
