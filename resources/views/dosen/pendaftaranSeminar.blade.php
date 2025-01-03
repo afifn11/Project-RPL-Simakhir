@@ -5,7 +5,7 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
+                <div class="col-12">
                     <h1>Kelola Pendaftaran Seminar</h1>
                 </div>
             </div>
@@ -24,48 +24,51 @@
                         {{ session('success') }}
                     </div>
                 @endif
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Mahasiswa</th>
-                            <th>Judul Seminar</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($seminars as $key => $seminar)
-                        <tr>
-                            <td>{{ $key + 1 }}</td>
-                            <td>{{ $seminar->user->name }}</td>
-                            <td>{{ $seminar->document->title ?? 'Judul tidak tersedia' }}</td> <!-- Judul dari Documents -->
-                            <td>
-                                @if($seminar->status === 'pending')
-                                    <span class="badge badge-warning">Menunggu</span>
-                                @elseif($seminar->status === 'approved')
-                                    <span class="badge badge-success">Disetujui</span>
-                                @elseif($seminar->status === 'rejected')
-                                    <span class="badge badge-danger">Ditolak</span>
-                                @else
-                                    <span class="badge badge-secondary">Tidak Diketahui</span>
-                                @endif
-                            </td>
-                            <td>
-                                <form action="{{ route('dosen.pendaftaranSeminar.approve', $seminar->id) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    <button class="btn btn-success btn-sm">Setujui</button>
-                                </form>
 
-                                <form action="{{ route('dosen.pendaftaranSeminar.reject', $seminar->id) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    <button class="btn btn-danger btn-sm">Tolak</button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <div class="table-responsive"> <!-- Membuat tabel responsif -->
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Mahasiswa</th>
+                                <th>Judul Seminar</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($seminars as $key => $seminar)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $seminar->user->name }}</td>
+                                <td>{{ $seminar->document->title ?? 'Judul tidak tersedia' }}</td> <!-- Judul dari Documents -->
+                                <td>
+                                    @if($seminar->status === 'pending')
+                                        <span class="badge badge-warning">Menunggu</span>
+                                    @elseif($seminar->status === 'approved')
+                                        <span class="badge badge-success">Disetujui</span>
+                                    @elseif($seminar->status === 'rejected')
+                                        <span class="badge badge-danger">Ditolak</span>
+                                    @else
+                                        <span class="badge badge-secondary">Tidak Diketahui</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <form action="{{ route('dosen.pendaftaranSeminar.approve', $seminar->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        <button class="btn btn-success btn-sm">Setujui</button>
+                                    </form>
+
+                                    <form action="{{ route('dosen.pendaftaranSeminar.reject', $seminar->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        <button class="btn btn-danger btn-sm">Tolak</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section>

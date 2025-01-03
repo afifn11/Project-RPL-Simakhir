@@ -5,7 +5,7 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
+                <div class="col-12">
                     <h1>Berikan Tugas</h1>
                 </div>
             </div>
@@ -24,26 +24,29 @@
                         {{ session('success') }}
                     </div>
                 @endif
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Mahasiswa</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($students as $key => $student)
+
+                <div class="table-responsive"> <!-- Membuat tabel responsif -->
+                    <table class="table table-bordered table-hover">
+                        <thead>
                             <tr>
-                                <td>{{ $key + 1 }}</td>
-                                <td>{{ $student->name }}</td>
-                                <td>
-                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addTaskModal" data-student="{{ $student }}">Berikan Tugas</button>
-                                </td>
+                                <th>No</th>
+                                <th>Nama Mahasiswa</th>
+                                <th>Aksi</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach($students as $key => $student)
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $student->name }}</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addTaskModal" data-student="{{ $student }}">Berikan Tugas</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section>
@@ -53,7 +56,7 @@
 
 <!-- Modal untuk memberikan tugas -->
 <div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document"> <!-- Modal responsif -->
         <form action="{{ route('dosen.kelolaTugas.store') }}" method="POST">
             @csrf
             <input type="hidden" name="user_id" id="studentId">
