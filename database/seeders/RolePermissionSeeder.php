@@ -50,5 +50,7 @@ class RolePermissionSeeder extends Seeder
         \App\Models\User::find(3)->assignRole('mahasiswa');
         \App\Models\User::find(4)->assignRole('mahasiswa');
         \App\Models\User::find(14)->assignRole('mahasiswa');
+        \App\Models\User::find(15)->assignRole('mahasiswa');
+        \App\Models\User::find(16)->assignRole('mahasiswa');
     }
 }

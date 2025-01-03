@@ -41,10 +41,13 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        // Trigger the registration event
         event(new Registered($user));
 
+        // Log in the newly registered user
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        // Redirect to mahasiswa dashboard
+        return redirect()->route('mahasiswa.dashboard');
     }
 }
