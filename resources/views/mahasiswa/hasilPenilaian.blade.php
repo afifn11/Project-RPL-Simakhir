@@ -19,23 +19,29 @@
             </div>
 
             <div class="card-body">
-                @if($results->isEmpty())
-                    <div class="alert alert-warning">
-                        Belum ada hasil penilaian untuk ditampilkan.
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
                     </div>
-                @else
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
-                            <thead>
+                @endif
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Judul</th>
+                                <th>Tanggal</th>
+                                <th>Nilai</th>
+                                <th>Komentar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if($results->isEmpty())
                                 <tr>
-                                    <th>No</th>
-                                    <th>Judul</th>
-                                    <th>Tanggal</th>
-                                    <th>Nilai</th>
-                                    <th>Komentar</th>
+                                    <td colspan="5" class="text-center">Belum ada hasil penilaian untuk ditampilkan.</td>
                                 </tr>
-                            </thead>
-                            <tbody>
+                            @else
                                 @foreach($results as $key => $result)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
@@ -52,10 +58,10 @@
                                         <td>{{ $result->comments ?? 'Tidak ada komentar' }}</td>
                                     </tr>
                                 @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                @endif
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section>

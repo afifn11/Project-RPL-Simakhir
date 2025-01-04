@@ -26,9 +26,7 @@
                     <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
 
-                @if ($documents->isEmpty())
-                    <div class="alert alert-warning">Belum ada dokumen yang diunggah.</div>
-                @else
+                <div class="table-responsive">
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -39,79 +37,85 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($documents as $key => $document)
+                            @if ($documents->isEmpty())
                                 <tr>
-                                    <td>{{ $key + 1 }}</td>
-                                    <td>{{ $document->title }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($document->created_at)->translatedFormat('d F Y') }}</td>
-                                    <td>
-                                        <a href="{{ route('documents.download', $document->id) }}" class="btn btn-success btn-sm">Unduh</a>
-                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal-{{ $document->id }}">Edit</button>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal-{{ $document->id }}">Hapus</button>
-                                    </td>
+                                    <td colspan="4" class="text-center">Belum ada dokumen yang diunggah.</td>
                                 </tr>
+                            @else
+                                @foreach($documents as $key => $document)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $document->title }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($document->created_at)->translatedFormat('d F Y') }}</td>
+                                        <td>
+                                            <a href="{{ route('documents.download', $document->id) }}" class="btn btn-success btn-sm">Unduh</a>
+                                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal-{{ $document->id }}">Edit</button>
+                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal-{{ $document->id }}">Hapus</button>
+                                        </td>
+                                    </tr>
 
-                                <!-- Modal Edit -->
-                                <div class="modal fade" id="editModal-{{ $document->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel-{{ $document->id }}" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <form action="{{ route('mahasiswa.unggahDokumen.update', $document->id) }}" method="POST" enctype="multipart/form-data">
-                                            @csrf
-                                            @method('PUT')
-                                            <div class="modal-content">
-                                                <div class="modal-header" style="background-color: #FFE4B5">
-                                                    <h5 class="modal-title" id="editModalLabel-{{ $document->id }}">Edit Dokumen</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-                                                        <label for="title-{{ $document->id }}">Nama Dokumen</label>
-                                                        <input type="text" name="title" id="title-{{ $document->id }}" class="form-control" value="{{ $document->title }}" required>
+                                    <!-- Modal Edit -->
+                                    <div class="modal fade" id="editModal-{{ $document->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel-{{ $document->id }}" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <form action="{{ route('mahasiswa.unggahDokumen.update', $document->id) }}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="modal-content">
+                                                    <div class="modal-header" style="background-color: #FFE4B5">
+                                                        <h5 class="modal-title" id="editModalLabel-{{ $document->id }}">Edit Dokumen</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="file-{{ $document->id }}">Ganti File (opsional)</label>
-                                                        <input type="file" name="file" id="file-{{ $document->id }}" class="form-control">
-                                                        <small class="form-text text-muted">Format file: PDF, DOC, DOCX (max: 2MB)</small>
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label for="title-{{ $document->id }}">Nama Dokumen</label>
+                                                            <input type="text" name="title" id="title-{{ $document->id }}" class="form-control" value="{{ $document->title }}" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="file-{{ $document->id }}">Ganti File (opsional)</label>
+                                                            <input type="file" name="file" id="file-{{ $document->id }}" class="form-control">
+                                                            <small class="form-text text-muted">Format file: PDF, DOC, DOCX (max: 2MB)</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer" style="background-color: #FFE4B5">
+                                                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-primary btn-sm">Simpan Perubahan</button>
                                                     </div>
                                                 </div>
-                                                <div class="modal-footer" style="background-color: #FFE4B5">
-                                                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-primary btn-sm">Simpan Perubahan</button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <!-- Modal Hapus -->
-                                <div class="modal fade" id="deleteModal-{{ $document->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel-{{ $document->id }}" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <form action="{{ route('mahasiswa.unggahDokumen.destroy', $document->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <div class="modal-content">
-                                                <div class="modal-header" style="background-color: #FFC7C7">
-                                                    <h5 class="modal-title" id="deleteModalLabel-{{ $document->id }}">Konfirmasi Hapus</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
+                                    <!-- Modal Hapus -->
+                                    <div class="modal fade" id="deleteModal-{{ $document->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel-{{ $document->id }}" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <form action="{{ route('mahasiswa.unggahDokumen.destroy', $document->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <div class="modal-content">
+                                                    <div class="modal-header" style="background-color: #FFC7C7">
+                                                        <h5 class="modal-title" id="deleteModalLabel-{{ $document->id }}">Konfirmasi Hapus</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Apakah Anda yakin ingin menghapus dokumen "<strong>{{ $document->title }}</strong>"?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                                    </div>
                                                 </div>
-                                                <div class="modal-body">
-                                                    Apakah Anda yakin ingin menghapus dokumen "<strong>{{ $document->title }}</strong>"?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
-                @endif
+                </div>
             </div>
         </div>
     </section>

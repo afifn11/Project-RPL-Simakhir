@@ -36,28 +36,34 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($bimbingans as $key => $bimbingan)
-                            <tr>
-                                <td>{{ $key + 1 }}</td>
-                                <td>{{ $bimbingan->title }}</td>
-                                <!-- Format tanggal -->
-                                <td>{{ \Carbon\Carbon::parse($bimbingan->date)->translatedFormat('d F Y') }}</td>
-                                <!-- Format waktu -->
-                                <td>{{ \Carbon\Carbon::parse($bimbingan->time)->format('H:i') }}</td>
-                                <td>
-                                    <!-- Badge status berdasarkan status bimbingan -->
-                                    @if($bimbingan->status == 'pending')
-                                        <span class="badge badge-warning">Menunggu</span>
-                                    @elseif($bimbingan->status == 'approved')
-                                        <span class="badge badge-success">Disetujui</span>
-                                    @elseif($bimbingan->status == 'rejected')
-                                        <span class="badge badge-danger">Ditolak</span>
-                                    @else
-                                        <span class="badge badge-secondary">Unknown</span>
-                                    @endif
-                                </td>
-                            </tr>
-                            @endforeach
+                            @if($bimbingans->isEmpty())
+                                <tr>
+                                    <td colspan="5" class="text-center">Belum ada data bimbingan tersedia.</td>
+                                </tr>
+                            @else
+                                @foreach($bimbingans as $key => $bimbingan)
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $bimbingan->title }}</td>
+                                    <!-- Format tanggal -->
+                                    <td>{{ \Carbon\Carbon::parse($bimbingan->date)->translatedFormat('d F Y') }}</td>
+                                    <!-- Format waktu -->
+                                    <td>{{ \Carbon\Carbon::parse($bimbingan->time)->format('H:i') }}</td>
+                                    <td>
+                                        <!-- Badge status berdasarkan status bimbingan -->
+                                        @if($bimbingan->status == 'pending')
+                                            <span class="badge badge-warning">Menunggu</span>
+                                        @elseif($bimbingan->status == 'approved')
+                                            <span class="badge badge-success">Disetujui</span>
+                                        @elseif($bimbingan->status == 'rejected')
+                                            <span class="badge badge-danger">Ditolak</span>
+                                        @else
+                                            <span class="badge badge-secondary">Unknown</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
