@@ -102,7 +102,7 @@
                             <h1 class="display-2 text-capitalize text-white mb-4">Solusi Manajemen Skripsi Anda!</h1>
                             <p class="mb-5 fs-5">SIMAKHIR membantu mahasiswa akhir, dosen, dan admin mengelola tugas akhir secara efisien.</p>
                             <div class="d-flex align-items-center justify-content-center">
-                                <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('register') }}">LOGIN</a>
+                                <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('register') }}">Register</a>
                             </div>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                             <h1 class="display-2 text-capitalize text-white mb-4">Pantau Tugas Skripsi dengan Mudah</h1>
                             <p class="mb-5 fs-5">Dengan SIMAKHIR, mahasiswa bisa memonitor progres skripsi mereka dalam satu platform yang terintegrasi.</p>
                             <div class="d-flex align-items-center justify-content-center">
-                                <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('register') }}">LOGIN</a>
+                                <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('register') }}">Register</a>
                             </div>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                             <h1 class="display-2 text-capitalize text-white mb-4">Jadwalkan Seminar dan Ujian Skripsi Anda</h1>
                             <p class="mb-5 fs-5">SIMAKHIR memungkinkan admin untuk menjadwalkan seminar dan ujian dengan mudah, serta memberikan notifikasi pengingat.</p>
                             <div class="d-flex align-items-center justify-content-center">
-                                <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('register') }}">LOGIN</a>
+                                <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('register') }}">Register</a>
                             </div>
                         </div>
                     </div>
