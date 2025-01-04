@@ -67,7 +67,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header" style="background-color: #E1FFBB">
-                                            <h5 class="modal-title" id="editModalLabel">Edit Jadwal Seminar</h5>
+                                            <h5 class="modal-title" id="editModalLabel">Edit Jadwal</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -107,7 +107,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Akhir Modal -->
+
                             @endforeach
                         </tbody>
                     </table>
@@ -195,3 +195,11 @@
 </div>
 
 @include('admin.footer')
+
+<script>
+    // Mengisi form delete dengan URL yang sesuai
+    $('.delete-button').click(function() {
+        var deleteUrl = $(this).data('url');
+        $('#deleteForm').attr('action', deleteUrl);
+    });
+</script>

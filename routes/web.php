@@ -32,10 +32,11 @@ Route::middleware('auth')->group(function () {
 // Route untuk admin
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::post('/admin/users', [UserController::class, 'store'])->name('admin.store');
+    Route::post('/admin/users', [UserController::class, 'store'])->name('users.store');
     Route::put('/admin/users/{id}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::get('/admin/kelolaPengguna', [AdminController::class, 'kelolaPengguna'])->name('admin.kelolaPengguna');
+
     // Jadwal Seminar
     Route::get('/admin/jadwalkanSeminar', [AdminController::class, 'jadwalkanSeminar'])->name('admin.jadwalkanSeminar');
     Route::post('/schedules', [ScheduleController::class, 'store'])->name('schedules.store');

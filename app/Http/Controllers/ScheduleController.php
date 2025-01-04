@@ -25,37 +25,32 @@ class ScheduleController extends Controller
     }
 
     public function update(Request $request, $id)
-{
-    // Validasi input
-    $request->validate([
-        'user_id' => 'required|exists:users,id',
-        'date' => 'required|date',
-        'time' => 'required', // Perbaikan: 'time' tidak ada validasi bawaan untuk format waktu
-        'location' => 'required|string|max:255',
-        'type' => 'required|in:bimbingan,seminar,ujian',
-    ]);
+    {
+        $request->validate([
+            'date' => 'required|date',
+            'time' => 'required',
+            'location' => 'required|string|max:255',
+            'type' => 'required|in:bimbingan,seminar,ujian',
+        ]);
 
-    // Cari jadwal seminar berdasarkan ID
-    $schedule = Schedule::findOrFail($id);
+        $schedule = Schedule::findOrFail($id);
+        $schedule->update([
+            'date' => $request->input('date'),
+            'time' => $request->input('time'),
+            'location' => $request->input('location'),
+            'type' => $request->input('type'),
+        ]);
 
-    // Update data
-    $schedule->update([
-        'user_id' => $request->user_id,
-        'date' => $request->date,
-        'time' => $request->time,
-        'location' => $request->location,
-        'type' => $request->type,
-    ]);
-
-    // Redirect kembali dengan pesan sukses
-    return redirect()->route('admin.jadwalkanSeminar')->with('success', 'Jadwal berhasil diperbarui.');
-}
+        return redirect()->route('admin.jadwalkanSeminar')->with('success', 'Jadwal berhasil diperbarui.');
+    }
 
 
     // Menghapus jadwal seminar
     public function destroy($id)
     {
-        Schedule::findOrFail($id)->delete();
+        $schedule = Schedule::findOrFail($id);
+        $schedule->delete();
+
         return redirect()->route('admin.jadwalkanSeminar')->with('success', 'Jadwal berhasil dihapus.');
     }
 }

@@ -20,20 +20,23 @@ class UserController extends Controller
         // Validasi input
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email',
+            'email' => 'required|email|unique:users,email|max:255',
             'password' => 'required|string|min:8|confirmed',
+            'role' => 'required|in:admin,dosen,mahasiswa',
         ]);
 
-        // Simpan pengguna baru ke database
+        // Simpan data ke database
         User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
+            'role' => $validated['role'],
         ]);
 
-        // Redirect ke halaman kelola pengguna dengan pesan sukses
+        // Redirect dengan pesan sukses
         return redirect()->route('admin.kelolaPengguna')->with('success', 'Pengguna berhasil ditambahkan.');
     }
+
 
     public function edit($id)
     {
