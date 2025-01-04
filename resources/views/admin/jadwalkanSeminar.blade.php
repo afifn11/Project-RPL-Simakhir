@@ -64,7 +64,7 @@
 
                             <!-- Modal Edit Data -->
                             <div class="modal fade" id="editModal{{ $schedule->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header" style="background-color: #E1FFBB">
                                             <h5 class="modal-title" id="editModalLabel">Edit Jadwal Seminar</h5>
@@ -119,7 +119,7 @@
 
 <!-- Modal Tambah Jadwal -->
 <div class="modal fade" id="createScheduleModal" tabindex="-1" role="dialog" aria-labelledby="createScheduleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #E1FFBB">
                 <h5 class="modal-title" id="createScheduleModalLabel">Tambah Jadwal Baru</h5>
@@ -171,7 +171,7 @@
 
 <!-- Modal Konfirmasi Hapus -->
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #FFC7C7">
                 <h5 class="modal-title" id="confirmDeleteModalLabel">Konfirmasi Hapus</h5>

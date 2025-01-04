@@ -56,7 +56,7 @@
 
                                     <!-- Modal Konfirmasi Hapus -->
                                     <div class="modal fade" id="confirmDeleteModal{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-sm" role="document">
+                                        <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header" style="background-color: #FFC7C7">
                                                     <h5 class="modal-title" id="confirmDeleteModalLabel">Konfirmasi Hapus</h5>
@@ -68,11 +68,11 @@
                                                     Apakah Anda yakin ingin menghapus data ini?
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
                                                     <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -85,9 +85,9 @@
 
                             <!-- Modal Edit Data -->
                             <div class="modal fade" id="editModal{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-dialog" role="document">
                                     <div class="modal-content">
-                                        <div class="modal-header" style="background-color: #E1FFBB">
+                                        <div class="modal-header" style="background-color: #FFE4B5">
                                             <h5 class="modal-title" id="editModalLabel">Edit Data Pengguna</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -108,9 +108,9 @@
                                                 </div>
                                             </div>
                                             
-                                            <div class="modal-footer" style="background-color: #074799">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                            <div class="modal-footer" style="background-color: #FFE4B5">
+                                                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Tutup</button>
+                                                <button type="submit" class="btn btn-primary btn-sm">Simpan Perubahan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -128,7 +128,7 @@
 
 <!-- Modal Tambah Pengguna -->
 <div class="modal fade" id="createUserModal" tabindex="-1" role="dialog" aria-labelledby="createUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #E1FFBB">
                 <h5 class="modal-title" id="createUserModalLabel">Tambah Pengguna Baru</h5>

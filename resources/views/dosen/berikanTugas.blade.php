@@ -56,7 +56,7 @@
 
 <!-- Modal untuk memberikan tugas -->
 <div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document"> <!-- Modal responsif -->
+    <div class="modal-dialog" role="document"> <!-- Modal responsif -->
         <form action="{{ route('dosen.kelolaTugas.store') }}" method="POST">
             @csrf
             <input type="hidden" name="user_id" id="studentId">

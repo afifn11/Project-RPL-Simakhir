@@ -58,7 +58,7 @@
                                             @csrf
                                             @method('PUT')
                                             <div class="modal-content">
-                                                <div class="modal-header bg-warning">
+                                                <div class="modal-header" style="background-color: #FFE4B5">
                                                     <h5 class="modal-title" id="editModalLabel-{{ $document->id }}">Edit Dokumen</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
@@ -75,7 +75,7 @@
                                                         <small class="form-text text-muted">Format file: PDF, DOC, DOCX (max: 2MB)</small>
                                                     </div>
                                                 </div>
-                                                <div class="modal-footer bg-warning">
+                                                <div class="modal-footer" style="background-color: #FFE4B5">
                                                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
                                                     <button type="submit" class="btn btn-primary btn-sm">Simpan Perubahan</button>
                                                 </div>
@@ -91,7 +91,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <div class="modal-content">
-                                                <div class="modal-header bg-danger">
+                                                <div class="modal-header" style="background-color: #FFC7C7">
                                                     <h5 class="modal-title" id="deleteModalLabel-{{ $document->id }}">Konfirmasi Hapus</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
@@ -123,7 +123,7 @@
         <form action="{{ route('mahasiswa.unggahDokumen.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="modal-content">
-                <div class="modal-header bg-success">
+                <div class="modal-header" style="background-color: #E1FFBB">
                     <h5 class="modal-title" id="uploadModalLabel">Unggah Dokumen</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -140,7 +140,7 @@
                         <small class="form-text text-muted">Format file: PDF, DOC, DOCX (max: 2MB)</small>
                     </div>
                 </div>
-                <div class="modal-footer bg-primary">
+                <div class="modal-footer" style="background-color: #074799">
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary btn-sm">Unggah</button>
                 </div>
